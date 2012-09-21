@@ -1,5 +1,5 @@
 #define MAX_PALAVRA 50
-#define DEBUG 0
+#define DEBUG 1
 
 typedef struct dicionario { 
 
@@ -12,11 +12,12 @@ Dicionario * aloca();
 
 void inicializa(Dicionario *first ,Dicionario *aux );
 
-void adicionaPalavra(Dicionario *ultimo);
+void adicionaPalavra(Dicionario **primeiro,Dicionario **ultimo);
 
-void imprimeDicionario(Dicionario *dic);
+void imprimeDicionario(Dicionario **aux);
 
 int moveToNext(Dicionario *dic);
 
-void debug(char op , int param);
-void debug(char op , char *param);
+void debug(int param);
+void debug(char *param);
+void debug(char *param1 , int param2);

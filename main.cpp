@@ -4,25 +4,28 @@
 
 char imprimeMenu();
 
-Dicionario *prim , *atual ;
-
 int main(){
+
+  Dicionario *prim=NULL , *atual = NULL ;
   
   char opcao;
-  
-  inicializa(prim , atual);
   
   while(opcao != '0'){
     
     opcao = imprimeMenu();
+    system("cls");
     
     switch(opcao){
       
-      case '1': imprimeDicionario(prim);
+      case '1': imprimeDicionario(&prim);
       break;
       
-      case '2': {
-        adicionaPalavra(atual);
+      case '2': {   
+        printf("atual %d\n", (int)atual );
+        
+        adicionaPalavra(&prim , &atual);
+        
+        printf("atual %d\n", (int)atual );
       }
       break;
       
@@ -36,6 +39,9 @@ int main(){
 char imprimeMenu(){
   
   fflush(stdin);
+  
+  system("cls");
+  
   printf(
     "Digite 1 para listar\n"
     "Digite 2 para adicionar\n"

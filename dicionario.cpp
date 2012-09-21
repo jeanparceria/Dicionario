@@ -2,12 +2,6 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-void inicializa(Dicionario *first ,Dicionario *aux ){
-  
-  first = aux = (Dicionario *)malloc(sizeof(Dicionario));
-  first->prox = NULL ;
-}
-
 Dicionario * aloca(){
   
   Dicionario * dic = (Dicionario *)malloc(sizeof(Dicionario));
@@ -15,31 +9,42 @@ Dicionario * aloca(){
   return dic;  
 }
 
-void adicionaPalavra(Dicionario *ultimo){
+void adicionaPalavra(Dicionario **primeiro,Dicionario **ultimo){
+  
+//  printf("ultimo %d\t*ultimo %d\t&(**ultimo) %d\n", (int)ultimo , (int)*ultimo, (int)&(**ultimo));
+  
+  fflush(stdin);
   
   printf("Digite a palavra a ser adicionada : ");
-
-  debug( 's' , "adiciona palavra : scanf");
-
-  ultimo->prox = aloca();
   
-  ultimo = ultimo->prox;
-
-  debug( 's',"adiciona palavra : scanf");
+  if(*ultimo==NULL){
+    *primeiro = *ultimo = aloca();
+    
+  }else {
+    (*ultimo)->prox = aloca();
+    *ultimo = (*ultimo)->prox;
+  }
   
-  scanf("%s", ultimo->palavra );
+  gets( (*ultimo)->palavra );
+  
+// printf("ultimo %d\t*ultimo %d\t&(**ultimo) %d\n", (int)ultimo , (int)*ultimo, (int)&(**ultimo));
+  
 }
 
-void imprimeDicionario(Dicionario *dic){
+void imprimeDicionario(Dicionario **param){
   
-  Dicionario *aux = dic;
+  Dicionario *aux = *param;
+  
+  printf("aux %d\n", (int)aux);
   
   if(aux==NULL){
     printf("Nao existem palavras na lista\n");
   }else while(aux!=NULL){
-    printf("%s\n",aux->palavra);  
+
+    printf("%d\t%s\n",aux->palavra,aux->palavra);  
     aux = aux->prox;  
   }
+  system("pause");
 }
 
 int moveToNext(Dicionario *dic){
@@ -49,11 +54,16 @@ int moveToNext(Dicionario *dic){
   
 }
 
-void debug(char op , int param){
-  if(DEBUG && op=='d')fprintf(stderr,"Debug: %d\n",param);
+void debug(char *param1 , int param2){
+  debug(param1);
+  debug(param2);
 }
 
-void debug(char op , char *param){
-  if(DEBUG && op=='s')fprintf(stderr,"Debug: %s\n",param);
+void debug(int param){
+  if(DEBUG)fprintf(stderr,"Debug: %d\n",param);
+}
+
+void debug(char *param){
+  if(DEBUG)fprintf(stderr,"Debug: %s\n",param);
 }
 
