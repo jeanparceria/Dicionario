@@ -40,6 +40,10 @@ local.properties
 *.suo
 *.user
 *.sln.docstates
+*.~cp
+*.win
+*.o
+*.exe
 
 # Build results
 [Dd]ebug/
