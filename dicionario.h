@@ -16,7 +16,7 @@ void adicionaPalavra(Dicionario **primeiro,Dicionario **ultimo);
 
 void imprimeDicionario(Dicionario **aux);
 
-int moveToNext(Dicionario *dic);
+int moveToNext(Dicionario **dic);
 
 void debug(int param);
 void debug(char *param);

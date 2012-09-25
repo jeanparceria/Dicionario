@@ -9,6 +9,8 @@ Dicionario * aloca(){
   return dic;  
 }
 
+
+
 void adicionaPalavra(Dicionario **primeiro,Dicionario **ultimo){
   
 //  printf("ultimo %d\t*ultimo %d\t&(**ultimo) %d\n", (int)ultimo , (int)*ultimo, (int)&(**ultimo));
@@ -39,18 +41,17 @@ void imprimeDicionario(Dicionario **param){
   
   if(aux==NULL){
     printf("Nao existem palavras na lista\n");
-  }else while(aux!=NULL){
-
-    printf("%d\t%s\n",aux->palavra,aux->palavra);  
-    aux = aux->prox;  
-  }
+  }else do{
+    
+    printf("%d\t%s\n",aux->palavra,aux->palavra);          
+  }while(moveToNext(&aux));
   system("pause");
 }
 
-int moveToNext(Dicionario *dic){
+int moveToNext(Dicionario **dic){
   
-  if(dic->prox == NULL)return 0;
-  else return (int)( dic = dic->prox);  
+  if((*dic)->prox == NULL)return 0;
+  else return (int)( *dic = (*dic)->prox);  
   
 }
 
